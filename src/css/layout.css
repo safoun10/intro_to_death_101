@@ -128,41 +128,90 @@ body {
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 600;
-  line-height: 1.05;
+  font-size: clamp(2.25rem, 6.5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.02;
   color: var(--text);
   margin: 0;
-  letter-spacing: -0.02em;
-  max-width: 90%;
-  text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  letter-spacing: 0.14em; /* tombstone letter spacing */
+  max-width: 92%;
+  text-shadow: 0 6px 30px rgba(0,0,0,0.7);
+  text-transform: uppercase;
+  transform-origin: center;
+  /* subtle intermittent flicker */
+  animation: title-flicker 8s linear infinite;
 }
 
 .hero__lead {
-  font-size: clamp(1rem, 2.5vw, var(--text-lg));
+  font-size: clamp(1rem, 2.2vw, var(--text-lg));
   color: var(--text-muted);
   max-width: 48rem;
-  line-height: var(--leading);
+  line-height: calc(var(--leading) + 0.1);
   margin-top: var(--space-sm);
-  opacity: 0.95;
+  opacity: 0.96;
+  letter-spacing: 0.01em;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* darker vignette and cold overlay to focus the content and make tone sombre */
-  background: radial-gradient(closest-side at 50% 30%, rgba(0,0,0,0.45), transparent 38%), linear-gradient(180deg, rgba(6,6,6,0.6), rgba(10,6,6,0.35));
+  background: radial-gradient(closest-side at 50% 30%, rgba(0,0,0,0.6), transparent 36%), linear-gradient(180deg, rgba(6,6,6,0.7), rgba(8,6,6,0.45));
   pointer-events: none;
   z-index: 1;
+  /* slow pulse like a distant heartbeat */
+  animation: vignette-pulse 6s ease-in-out infinite;
 }
 
-/* Tone down particles and background to feel bleaker */
-#particles { opacity: 0.06; }
+/* drifting smear to suggest something alive in the background */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  top: 8%;
+  width: 36%;
+  height: 52%;
+  background: radial-gradient(circle at 20% 25%, rgba(91,38,38,0.12), transparent 30%), radial-gradient(circle at 70% 80%, rgba(20,10,10,0.06), transparent 40%);
+  filter: blur(46px) saturate(0.7);
+  transform: rotate(-10deg);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+  animation: smear-float 12s ease-in-out infinite;
+}
 
-.parallax-bg__layer--mid { filter: grayscale(0.6) brightness(0.6) blur(14px); opacity: 0.55; }
-.parallax-bg__layer--far { filter: grayscale(0.6) brightness(0.5) blur(8px); }
+/* reduce particles so they feel like dust rather than decoration */
+#particles { opacity: 0.04; }
 
+.parallax-bg__layer--mid { filter: grayscale(0.8) brightness(0.55) blur(16px); opacity: 0.5; }
+.parallax-bg__layer--far { filter: grayscale(0.8) brightness(0.45) blur(10px); }
+
+/* animations */
+@keyframes title-flicker {
+  0%, 94% { opacity: 1; text-shadow: 0 6px 30px rgba(0,0,0,0.7); }
+  95% { opacity: 0.88; text-shadow: 0 0 10px rgba(91,38,38,0.25); }
+  96% { opacity: 1; }
+  98% { opacity: 0.92; text-shadow: 0 0 14px rgba(91,38,38,0.18); }
+  100% { opacity: 1; }
+}
+
+@keyframes vignette-pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.92; transform: scale(0.998); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes smear-float {
+  0% { transform: translateY(0) rotate(-10deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(-8deg) scale(1.02); }
+  100% { transform: translateY(0) rotate(-10deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title { animation: none; }
+  .hero::before { animation: none; }
+  .hero::after { animation: none; }
+}
 
 /* Sections */
 .chapter {

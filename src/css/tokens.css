@@ -1,8 +1,8 @@
 :root {
-	--text-base: 1.0625rem; /* slightly smaller, denser */
-	--text-lg: 1.25rem;
-	--text-xl: 3rem;
-	--leading: 1.5;
+	--text-base: 1.125rem; /* slightly larger for readability */
+	--text-lg: 1.375rem;
+	--text-xl: 3.25rem;
+	--leading: 1.7; /* more breathing room */
 	--space-xs: 0.5rem;
 	--space-sm: 0.875rem;
 	--space-md: 1.25rem;
@@ -12,14 +12,14 @@
 	--measure: 55rem;
 	--gutter: 1.25rem;
 
-	--font-body: "Crimson Text", serif; /* use a somber serif for body */
+	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* more readable body */
 	--font-display: "Crimson Text", serif;
 
 	/* Grim palette: deeper blacks, bone text, muted maroon accent */
 	--bg: #070506;
 	--bg-section: #0b0a0a;
-	--text: #e7e1da; /* bone */
-	--text-muted: #b5aea9;
+	--text: #f3efe9; /* slightly brighter bone for contrast */
+	--text-muted: #c6c0bb;
 	--accent: #5b2626; /* deep maroon */
 	--accent-soft: rgba(91, 38, 38, 0.06);
 	--border: rgba(255, 255, 255, 0.04);
