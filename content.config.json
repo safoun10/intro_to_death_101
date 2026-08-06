@@ -1,0 +1,42 @@
+{
+  "title": "Introduction to Death 101",
+  "description": "A meditation on mortality, uncertainty, and the time you think you have left.",
+  "sectionOverrides": {
+    "next 10 year": {
+      "id": "ten-years",
+      "theme": "dawn",
+      "headline": "Ten years — but when?"
+    },
+    "next 1 year": {
+      "id": "one-year",
+      "theme": "dusk",
+      "headline": "One year left"
+    },
+    "die today": {
+      "id": "today",
+      "theme": "midnight",
+      "headline": "Today — this hour"
+    },
+    "this exact hour": {
+      "id": "today",
+      "theme": "midnight",
+      "headline": "Today — this hour"
+    },
+    "Being born means death": {
+      "id": "inevitable",
+      "theme": "void",
+      "headline": "Inevitable"
+    },
+    "age of 60 or 80": {
+      "id": "false-certainty",
+      "theme": "flicker",
+      "headline": "Sixty or eighty?"
+    },
+    "Does it scare you": {
+      "id": "closing",
+      "theme": "stillness",
+      "headline": "Stillness"
+    }
+  },
+  "defaultThemeCycle": ["dawn", "dusk", "midnight", "void", "flicker", "stillness"]
+}

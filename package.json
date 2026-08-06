@@ -1,0 +1,13 @@
+{
+  "name": "introduction-to-death-101",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A visual scrollytelling blog about mortality and uncertainty",
+  "scripts": {
+    "build:content": "node scripts/build-content.mjs",
+    "build:dist": "node scripts/build-dist.mjs",
+    "build": "npm run build:content && npm run build:dist",
+    "dev": "npm run build:content && npx --yes serve src -l 3000",
+    "preview": "npm run build && npx --yes serve dist -l 3000"
+  }
+}

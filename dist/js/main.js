@@ -1,0 +1,43 @@
+import { renderContent, initRevealObserver } from './render.js';
+
+async function init() {
+    try {
+        const response = await fetch('data/content.json');
+        const data = await response.json();
+        
+        renderContent(data);
+        initRevealObserver();
+        
+        console.log('Site initialized');
+    } catch (err) {
+        console.error('Failed to load content:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+// Scroll to top handler
+document.getElementById('scroll-top')?.addEventListener('click', () => {
+  lenis.scrollTo(0, { duration: 1.5 });
+});
+
+// Lenis initialization
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+

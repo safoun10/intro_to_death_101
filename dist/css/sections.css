@@ -1,0 +1,17 @@
+.chapter + .chapter {
+  margin-top: 0;
+}
+
+.chapter[data-theme="midnight"] .chapter__question {
+  border-left-color: var(--accent);
+}
+
+.chapter[data-theme="stillness"] .chapter__headline {
+  opacity: 0.85;
+}
+
+.chapter[data-theme="stillness"] .chapter__question {
+  border-left-width: 2px;
+  background: transparent;
+  border-left-color: var(--accent);
+}
