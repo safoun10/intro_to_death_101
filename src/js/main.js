@@ -8,7 +8,6 @@ async function init() {
         renderContent(data);
         initRevealObserver();
         
-        console.log('Site initialized');
     } catch (err) {
         console.error('Failed to load content:', err);
     }
