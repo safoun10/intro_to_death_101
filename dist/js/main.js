@@ -1,4 +1,5 @@
 import { renderContent, initRevealObserver } from './render.js';
+import { initParticles } from './particles.js';
 
 async function init() {
     try {
@@ -7,6 +8,7 @@ async function init() {
         
         renderContent(data);
         initRevealObserver();
+        initParticles();
         
         console.log('Site initialized');
     } catch (err) {

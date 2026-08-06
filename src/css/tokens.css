@@ -8,43 +8,47 @@
 	--space-md: 1.5rem;
 	--space-lg: 3rem;
 	--space-xl: 5rem;
-	--space-2xl: 8rem;
-	--measure: 40rem;
+	--space-2xl: 12rem;
+	--measure: 36rem;
 	--gutter: 1.5rem;
 
 	--font-body: "Inter", sans-serif;
 	--font-display: "Crimson Text", serif;
 
-	/* Refined palette: Softer dark, elevated neutral, crisp accent */
-	--bg: #0f0f0f;
-	--bg-section: #141414;
-	--text: #e0e0e0;
-	--text-muted: #888888;
-	--accent: #d4b483;
-	--accent-soft: rgba(212, 180, 131, 0.08);
-	--border: rgba(255, 255, 255, 0.08);
-	--horizon-top: #c47840;
-	--horizon-bottom: #1a1410;
-	--horizon-fill: #8b5a30;
-	--gradient-top: #1a1a1a;
-	--gradient-bottom: #0f0f0f;
+	--bg: #050505;
+	--text: #a0a0a0;
+	--accent: #ffffff;
+	--transition-speed: 2.5s;
 }
 
+/* Temporal Descent Themes */
 [data-theme="dawn"] {
-	--accent: #d4a373;
+	--bg: #1a1a1a;
+	--text: #888;
+	--accent: #c0c0c0;
 }
 [data-theme="dusk"] {
-	--accent: #c19a6b;
+	--bg: #121212;
+	--text: #777;
+	--accent: #a0a0a0;
 }
 [data-theme="midnight"] {
-	--accent: #a68a64;
+	--bg: #0a0a0a;
+	--text: #555;
+	--accent: #808080;
 }
 [data-theme="void"] {
-	--accent: #666666;
+	--bg: #050505;
+	--text: #333;
+	--accent: #555;
 }
 [data-theme="flicker"] {
-	--accent: #e5b56f;
+	--bg: #020202;
+	--text: #222;
+	--accent: #333;
 }
 [data-theme="stillness"] {
-	--accent: #a3b18a;
+	--bg: #000000;
+	--text: #111;
+	--accent: #ffffff;
 }

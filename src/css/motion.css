@@ -1,14 +1,14 @@
 .reveal {
 	opacity: 0;
-	transform: translateY(20px);
+	filter: blur(10px);
 	transition:
-		opacity 0.8s ease-out,
-		transform 0.8s ease-out;
+		opacity var(--transition-speed) ease,
+		filter var(--transition-speed) ease;
 }
 
 .reveal.is-visible {
 	opacity: 1;
-	transform: translateY(0);
+	filter: blur(0px);
 }
 
 .reveal--delay-1 {
@@ -27,7 +27,7 @@
 @media (prefers-reduced-motion: reduce) {
 	.reveal {
 		opacity: 1;
-		transform: none;
+		filter: none;
 		transition: none;
 	}
 
