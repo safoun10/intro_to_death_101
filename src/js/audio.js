@@ -143,54 +143,52 @@ function stopAudioFile() {
   isPlaying = false;
 }
 
-export function initAudioToggle(buttonId = 'audio-toggle-fixed', fileInputId = 'audio-file-input') {
+export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
   const btn = document.getElementById(buttonId);
-  const fileInput = document.getElementById(fileInputId);
   if (!btn) return;
 
+  const playIcon = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M5 3v18l15-9L5 3z" fill="currentColor" />
+    </svg>`;
+  const pauseIcon = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor" />
+    </svg>`;
+
+  function setIcon(playing) {
+    btn.innerHTML = playing ? pauseIcon : playIcon;
+    btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  }
+
+  // initialize button icon
+  setIcon(false);
+
   btn.addEventListener('click', async (e) => {
-    // if playing from audioEl, stop it
-    if (audioEl && !audioEl.paused) {
-      stopAudioFile();
-      btn.setAttribute('aria-pressed', 'false');
+    // If an audio file element exists, toggle play/pause
+    if (audioEl) {
+      if (audioEl.paused) {
+        await audioEl.play().catch(() => {});
+        setIcon(true);
+        isPlaying = true;
+      } else {
+        audioEl.pause();
+        setIcon(false);
+        isPlaying = false;
+      }
       return;
     }
 
-    // if drone is running, stop it
+    // If procedural drone is active, stop it
     if (audioCtx) {
       stopDrone();
-      btn.setAttribute('aria-pressed', 'false');
+      setIcon(false);
       return;
     }
 
-    // If a file is already loaded but paused, play it
-    if (audioEl && audioEl.paused) {
-      audioEl.play();
-      btn.setAttribute('aria-pressed', 'true');
-      return;
-    }
-
-    // No audio: prompt user to pick a music file
-    if (fileInput) {
-      const handleFile = () => {
-        const file = fileInput.files && fileInput.files[0];
-        fileInput.removeEventListener('change', handleFile);
-        if (file) {
-          playAudioFileFromBlob(file);
-          btn.setAttribute('aria-pressed', 'true');
-        } else {
-          // If user cancelled, fallback to drone
-          createDrone();
-          btn.setAttribute('aria-pressed', 'true');
-        }
-      };
-      fileInput.addEventListener('change', handleFile);
-      fileInput.click();
-    } else {
-      // If no file input available, start drone
-      createDrone();
-      btn.setAttribute('aria-pressed', 'true');
-    }
+    // Start procedural drone by default on first click
+    createDrone();
+    setIcon(true);
   });
 
   // keyboard accessibility: space/enter toggles
