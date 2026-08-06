@@ -79,11 +79,11 @@ body {
 
 /* Hero */
 .hero {
-  min-height: 100svh;
+  min-height: 90svh;
   display: flex;
   align-items: center;
   position: relative;
-  padding-block: var(--space-xl);
+  padding-block: var(--space-lg);
   background: linear-gradient(
     180deg,
     var(--gradient-top) 0%,
@@ -128,7 +128,7 @@ body {
 
 /* Sections */
 .chapter {
-  padding-block: var(--space-xl);
+  padding-block: var(--space-lg);
   background: linear-gradient(
     180deg,
     var(--bg-section) 0%,
@@ -142,7 +142,7 @@ body {
   font-size: var(--text-lg);
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   letter-spacing: 0.02em;
 }
 
