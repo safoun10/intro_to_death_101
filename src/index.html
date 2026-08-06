@@ -58,12 +58,15 @@
     </div>
 
   <!-- Fixed audio control (icon-only). Procedural drone will play when toggled; user can later add a file upload feature if desired. -->
-  <button id="audio-toggle-fixed" class="audio-toggle-fixed" aria-pressed="false" aria-label="Toggle music" title="Toggle music">
-    <!-- Play icon (SVG) -->
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-      <path d="M5 3v18l15-9L5 3z" fill="currentColor" />
-    </svg>
-  </button>
+  <div class="audio-hint-wrapper">
+    <div id="audio-hint" class="audio-hint" role="status" aria-live="polite">Click the button to play the ambient music</div>
+    <button id="audio-toggle-fixed" class="audio-toggle-fixed" aria-pressed="false" aria-label="Toggle music" title="Toggle music">
+      <!-- Play icon (SVG) -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M5 3v18l15-9L5 3z" fill="currentColor" />
+      </svg>
+    </button>
+  </div>
   </footer>
 
   <script type="module" src="js/main.js"></script>

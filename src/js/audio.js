@@ -145,6 +145,7 @@ function stopAudioFile() {
 
 export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
   const btn = document.getElementById(buttonId);
+  const hint = document.getElementById('audio-hint');
   if (!btn) return;
 
   const playIcon = `
@@ -161,10 +162,58 @@ export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
     btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
   }
 
+  // show hint if available
+  function showHint(msg) {
+    if (!hint) return;
+    hint.textContent = msg;
+    hint.classList.remove('hidden');
+    hint.classList.add('visible');
+    // auto-hide after 6s
+    setTimeout(() => hideHint(), 6000);
+  }
+  function hideHint() {
+    if (!hint) return;
+    hint.classList.remove('visible');
+    hint.classList.add('hidden');
+  }
+
   // initialize button icon
   setIcon(false);
 
+  // Attempt to detect a bundled music file at /media/music.mp3 (served from repo if you place it under src/media/ and rebuild)
+  (async function checkBundledMusic() {
+    try {
+      const head = await fetch('/media/music.mp3', { method: 'HEAD' });
+      if (head.ok) {
+        audioEl = new Audio('/media/music.mp3');
+        audioEl.loop = true;
+        audioEl.preload = 'auto';
+        showHint('Bundled music found — click to play');
+        return;
+      }
+    } catch (e) {
+      // HEAD might be blocked; try a small range GET
+      try {
+        const r = await fetch('/media/music.mp3', { headers: { Range: 'bytes=0-102' } });
+        if (r.ok) {
+          audioEl = new Audio('/media/music.mp3');
+          audioEl.loop = true;
+          audioEl.preload = 'auto';
+          showHint('Bundled music found — click to play');
+          return;
+        }
+      } catch (err) {
+        // no bundled music
+      }
+    }
+    // No bundled music found; hint user to click to start procedurally generated ambient drone
+    showHint('Click to play the ambient music');
+  })();
+
   btn.addEventListener('click', async (e) => {
+    // first hide hint when user interacts
+    hideHint();
+
     // If an audio file element exists, toggle play/pause
     if (audioEl) {
       if (audioEl.paused) {
