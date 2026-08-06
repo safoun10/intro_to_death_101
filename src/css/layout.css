@@ -151,31 +151,18 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(closest-side at 50% 35%, rgba(255,255,255,0.04), transparent 40%), linear-gradient(180deg, rgba(10,10,10,0.35), transparent 60%);
+  /* darker vignette and cold overlay to focus the content and make tone sombre */
+  background: radial-gradient(closest-side at 50% 30%, rgba(0,0,0,0.45), transparent 38%), linear-gradient(180deg, rgba(6,6,6,0.6), rgba(10,6,6,0.35));
   pointer-events: none;
   z-index: 1;
 }
 
-.hero__actions {
-  margin-top: var(--space-md);
-  z-index: 2;
-}
+/* Tone down particles and background to feel bleaker */
+#particles { opacity: 0.06; }
 
-.hero__cta {
-  background: var(--accent);
-  color: var(--bg);
-  padding: 0.65rem 1.05rem;
-  border-radius: 999px;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.04);
-}
+.parallax-bg__layer--mid { filter: grayscale(0.6) brightness(0.6) blur(14px); opacity: 0.55; }
+.parallax-bg__layer--far { filter: grayscale(0.6) brightness(0.5) blur(8px); }
 
-.hero__cta:hover,
-.hero__cta:focus {
-  transform: translateY(-2px);
-  filter: brightness(1.03);
-}
 
 /* Sections */
 .chapter {
