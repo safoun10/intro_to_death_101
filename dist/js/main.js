@@ -1,4 +1,5 @@
 import { renderContent, initRevealObserver } from './render.js';
+import { initAudioToggle } from './audio.js';
 
 async function init() {
     try {
@@ -7,8 +8,9 @@ async function init() {
         
         renderContent(data);
         initRevealObserver();
-        
-        console.log('Site initialized');
+        // initialize ambient audio toggle (AudioContext created on user gesture)
+        initAudioToggle();
+
     } catch (err) {
         console.error('Failed to load content:', err);
     }

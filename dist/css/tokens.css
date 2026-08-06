@@ -1,33 +1,33 @@
 :root {
-	--text-base: 1.125rem;
-	--text-lg: 1.5rem;
-	--text-xl: 3.5rem;
-	--leading: 1.7;
+	--text-base: 1.125rem; /* slightly larger for readability */
+	--text-lg: 1.375rem;
+	--text-xl: 3.25rem;
+	--leading: 1.7; /* more breathing room */
 	--space-xs: 0.5rem;
-	--space-sm: 1rem;
-	--space-md: 1.5rem;
-	--space-lg: 3rem;
-	--space-xl: 5rem;
-	--space-2xl: 8rem;
-	--measure: 40rem;
-	--gutter: 1.5rem;
+	--space-sm: 0.875rem;
+	--space-md: 1.25rem;
+	--space-lg: 1.75rem;
+	--space-xl: 3rem;
+	--space-2xl: 5rem;
+	--measure: 55rem;
+	--gutter: 1.25rem;
 
-	--font-body: "Inter", sans-serif;
+	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* more readable body */
 	--font-display: "Crimson Text", serif;
 
-	/* Refined palette: Softer dark, elevated neutral, crisp accent */
-	--bg: #0f0f0f;
-	--bg-section: #141414;
-	--text: #e0e0e0;
-	--text-muted: #888888;
-	--accent: #d4b483;
-	--accent-soft: rgba(212, 180, 131, 0.08);
-	--border: rgba(255, 255, 255, 0.08);
-	--horizon-top: #c47840;
-	--horizon-bottom: #1a1410;
-	--horizon-fill: #8b5a30;
-	--gradient-top: #1a1a1a;
-	--gradient-bottom: #0f0f0f;
+	/* Grim palette: deeper blacks, bone text, muted maroon accent */
+	--bg: #070506;
+	--bg-section: #0b0a0a;
+	--text: #f3efe9; /* slightly brighter bone for contrast */
+	--text-muted: #c6c0bb;
+	--accent: #5b2626; /* deep maroon */
+	--accent-soft: rgba(91, 38, 38, 0.06);
+	--border: rgba(255, 255, 255, 0.04);
+	--horizon-top: #4b1f1f;
+	--horizon-bottom: #0b0606;
+	--horizon-fill: #381616;
+	--gradient-top: #0b0b0b;
+	--gradient-bottom: #070506;
 }
 
 [data-theme="dawn"] {
