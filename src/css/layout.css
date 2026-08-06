@@ -289,6 +289,27 @@ body {
   outline-offset: 2px;
 }
 
+/* Audio toggle control */
+.audio-toggle {
+  margin-left: 1rem;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.audio-toggle[aria-pressed="true"] {
+  background: rgba(91,38,38,0.9);
+  color: var(--bg);
+  border-color: rgba(91,38,38,0.9);
+}
+
+@media (min-width: 768px) {
+  .audio-toggle { margin-left: 1.25rem; }
+}
+
 @media (min-width: 768px) {
   .chapter {
     padding-block: var(--space-2xl);
