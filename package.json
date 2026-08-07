@@ -7,7 +7,7 @@
     "build:content": "node scripts/build-content.mjs",
     "build:dist": "node scripts/build-dist.mjs",
     "build": "npm run build:content && npm run build:dist",
-    "dev": "node scripts/build-content.mjs && npx serve ."
+    "dev": "node scripts/build-content.mjs && npx serve src"
   },
   "devDependencies": {
     "serve": "^14.2.1"
