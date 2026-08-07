@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Death 101</title>
+  <meta name="description" content="A meditation on mortality, uncertainty, and the time you think you have left.">
+  <meta property="og:title" content="Introduction to Death 101">
+  <meta property="og:description"
+    content="A meditation on mortality, uncertainty, and the time you think you have left.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#1a1410">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:ital,wght@0,300;0,400;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+</head>
+
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="parallax-bg" aria-hidden="true">
+    <div class="parallax-bg__layer parallax-bg__layer--far" data-parallax="0.15"></div>
+    <div class="parallax-bg__layer parallax-bg__layer--mid" data-parallax="0.3"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <main id="main">
+    <header class="hero" data-theme="dawn">
+      <div class="hero__horizon" aria-hidden="true">
+        <svg viewBox="0 0 400 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 55 Q100 35 200 50 T400 45 L400 80 L0 80 Z" fill="var(--accent)" opacity="0.2" />
+        </svg>
+      </div>
+      <div class="container hero__inner">
+        <h1 class="hero__title" id="site-title"></h1>
+        <p class="hero__lead reveal" id="hero-lead"></p>
+      </div>
+    </header>
+
+    <div id="sections-root"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <button type="button" class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+        ↑ Back to start
+      </button>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
