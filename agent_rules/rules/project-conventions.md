@@ -1,5 +1,5 @@
 ---
-description: Project conventions for Introduction to Death 101 visual blog
+description: Project conventions for INTRODUCTION TO DEATH 101 visual blog
 alwaysApply: true
 ---
 

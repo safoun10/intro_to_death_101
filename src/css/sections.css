@@ -17,22 +17,59 @@
 }
 
 .chapter__questions {
-	margin: var(--space-xl) 0;
+	/* tightened vertical rhythm for a more elegant flow */
+	margin: var(--space-sm) 0;
 	list-style: none;
-	/* Removed border and left padding from container */
+}
+
+/* when multiple question lists are adjacent, tighten the gap between them */
+.chapter__questions + .chapter__questions {
+	margin-top: var(--space-xs);
 }
 
 .chapter__question {
+	/* use display serif for questions to add haunting elegance */
 	font-family: var(--font-display);
-	font-size: 1.25rem;
-	color: var(--accent);
-	padding: 1rem 0;
-	padding-left: 1rem; /* Added padding to the text itself */
-	border-left: 2px solid var(--accent); /* Move border to individual items */
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	transition: color var(--transition-speed) ease;
+	font-size: var(--text-base);
+	color: var(--text);
+	padding: var(--card-padding-y) var(--card-padding-x);
+	border-left: 4px solid var(--accent);
+	/* intensified glassy card for each question item */
+	background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.15));
+	backdrop-filter: blur(10px) saturate(0.55);
+	-webkit-backdrop-filter: blur(10px) saturate(0.55);
+	font-style: italic;
+	margin-bottom: var(--card-gap);
+	border-radius: 10px;
+	box-shadow: inset 0 -2px 6px rgba(0,0,0,0.7), 0 12px 36px rgba(0,0,0,0.75);
+	transition: background var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
+	position: relative;
+	overflow: hidden;
+}
+
+/* subtle left rim highlight */
+.chapter__question::before {
+	content: "";
+	position: absolute;
+	left: -2px;
+	top: 6px;
+	bottom: 6px;
+	width: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+	mix-blend-mode: overlay;
+	pointer-events: none;
+	opacity: 0.28;
+}
+
+.chapter__question:hover,
+.chapter__question:focus {
+	transform: translateY(-4px);
+	background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(0,0,0,0.12));
+	box-shadow: inset 0 -2px 8px rgba(0,0,0,0.75), 0 18px 48px rgba(0,0,0,0.8);
 }
 
 .chapter__question:first-child {
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	margin-top: 0;
 }

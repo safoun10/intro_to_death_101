@@ -9,7 +9,7 @@ function loadConfig() {
   const configPath = join(root, "content.config.json");
   if (!existsSync(configPath)) {
     return {
-      title: "Introduction to Death 101",
+      title: "INTRODUCTION TO DEATH 101",
       description: "",
       sectionOverrides: {},
       defaultThemeCycle: ["dawn", "dusk", "midnight", "void", "flicker", "stillness"],

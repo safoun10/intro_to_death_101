@@ -74,25 +74,33 @@ function createSection(section) {
 
   let revealIndex = 0;
 
+  // coalesce consecutive questions blocks into a single list for tighter grouping
+  let currentUl = null;
+
   for (const block of section.blocks) {
-    if (block.type === "paragraph") {
-      const p = document.createElement("p");
-      p.className = `chapter__paragraph reveal${delayClass(revealIndex)}`;
-      p.textContent = block.text;
-      body.appendChild(p);
-      revealIndex++;
-    } else if (block.type === "questions") {
-      const ul = document.createElement("ul");
-      ul.className = "chapter__questions";
-      for (const item of block.items) {
-        const li = document.createElement("li");
-        li.className = `chapter__question reveal${delayClass(revealIndex)}`;
-        li.textContent = item;
-        ul.appendChild(li);
-        revealIndex++;
-      }
-      body.appendChild(ul);
-    }
+   if (block.type === "paragraph") {
+     // close any open questions list
+     currentUl = null;
+
+     const p = document.createElement("p");
+     p.className = `chapter__paragraph reveal${delayClass(revealIndex)}`;
+     p.textContent = block.text;
+     body.appendChild(p);
+     revealIndex++;
+   } else if (block.type === "questions") {
+     if (!currentUl) {
+       currentUl = document.createElement("ul");
+       currentUl.className = "chapter__questions";
+       body.appendChild(currentUl);
+     }
+     for (const item of block.items) {
+       const li = document.createElement("li");
+       li.className = `chapter__question reveal${delayClass(revealIndex)}`;
+       li.textContent = item;
+       currentUl.appendChild(li);
+       revealIndex++;
+     }
+   }
   }
 
   container.appendChild(body);

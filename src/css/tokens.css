@@ -12,52 +12,65 @@
 	--measure: 55rem;
 	--gutter: 1.25rem;
 
-	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* more readable body */
-	--font-display: "Crimson Text", serif;
+	/* Card / question sizing tokens for consistent spacing */
+	--card-padding-y: 0.6rem;
+	--card-padding-x: 1rem;
+	--card-gap: var(--space-xs);
 
-	/* Grim palette: deeper blacks, bone text, muted maroon accent */
+	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* more readable body */
+	--font-display: "Cormorant Garamond", "Crimson Text", serif;
+
+	/* Grim palette: deeper blacks, bone text, colder desaturated accent for a more modern grave look */
 	--bg: #070506;
-	--bg-section: #0b0a0a;
-	--text: #f3efe9; /* slightly brighter bone for contrast */
-	--text-muted: #c6c0bb;
-	--accent: #5b2626; /* deep maroon */
-	--accent-soft: rgba(91, 38, 38, 0.06);
+	--bg-section: rgba(12,12,12,0.6);
+	--text: #efe9e4; /* slightly brighter bone for contrast */
+	--text-muted: #cfc8c3;
+	--accent: #4b5258; /* desaturated steel / grave accent */
+	--accent-soft: rgba(75,82,88,0.06);
+	--rim: rgba(255,255,255,0.06);
 	--border: rgba(255, 255, 255, 0.04);
-	--horizon-top: #4b1f1f;
+	--horizon-top: #2b2626;
 	--horizon-bottom: #0b0606;
-	--horizon-fill: #381616;
-	--gradient-top: #0b0b0b;
-	--gradient-bottom: #070506;
+	--horizon-fill: #221717;
+	--gradient-top: rgba(10,10,10,0.85);
+	--gradient-bottom: rgba(6,5,6,0.6);
+	--transition-speed: 0.28s;
 }
 
 /* Temporal Descent Themes */
 [data-theme="dawn"] {
 	--bg: #1a1a1a;
-	--text: #888;
-	--accent: #c0c0c0;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #b85a4a;
 }
 [data-theme="dusk"] {
 	--bg: #121212;
-	--text: #777;
-	--accent: #a0a0a0;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #9a5e6b;
 }
 [data-theme="midnight"] {
 	--bg: #0a0a0a;
-	--text: #555;
-	--accent: #808080;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #7f7f9a;
 }
 [data-theme="void"] {
 	--bg: #050505;
-	--text: #333;
-	--accent: #555;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #6b6b6b;
 }
 [data-theme="flicker"] {
 	--bg: #020202;
-	--text: #222;
-	--accent: #333;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #a87f3b;
 }
 [data-theme="stillness"] {
 	--bg: #000000;
-	--text: #111;
-	--accent: #ffffff;
+	--text: #f3efe9;
+	--text-muted: #d0c8c3;
+	--accent: #f2f2f2;
 }

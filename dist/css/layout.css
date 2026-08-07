@@ -1,4 +1,4 @@
-body {
+html, body {
 	font-family: var(--font-body);
 	font-size: var(--text-base);
 	line-height: var(--leading);
@@ -9,6 +9,56 @@ body {
 		color var(--transition-speed) ease;
 	overflow-x: hidden;
 }
+
+/* Global smoothing for display font */
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Enforce typographic hierarchy and consistent font usage */
+h1, h2, h3, h4, h5, h6, .hero__title, .chapter__headline {
+	font-family: var(--font-display);
+}
+
+/* Fallback while fonts load: use generic serif so headings render consistently until webfonts arrive */
+html:not(.fonts-loaded) .hero__title,
+html:not(.fonts-loaded) .chapter__headline,
+html:not(.fonts-loaded) .chapter__question {
+	font-family: Georgia, 'Times New Roman', serif !important;
+}
+
+/* When fonts are ready, switch to the chosen display font */
+html.fonts-loaded .hero__title,
+html.fonts-loaded .chapter__headline,
+html.fonts-loaded .chapter__question {
+	font-family: var(--font-display) !important;
+}
+
+/* ensure UI controls inherit the body font */
+button, input, textarea, select, a { font-family: inherit; }
+
+/* Force display font on all headline-like elements and question text to ensure consistency */
+.hero__title,
+.chapter__headline,
+.chapter__question,
+.chapter__question *,
+h1, h2, h3, h4, h5, h6,
+.container h2,
+.container h1 {
+	font-family: var(--font-display) !important;
+}
+
+/* Ensure body copy and UI remain in the system sans for legibility */
+p, li, .chapter__paragraph, .hero__lead, button, input, textarea, select {
+	font-family: var(--font-body) !important;
+}
+
+/* Enforce font sizes to avoid inherited heavy weights from display font */
+.chapter__headline { font-weight: 500 !important; }
+.hero__title { font-weight: 600 !important; }
+.chapter__question { font-style: italic !important; }
+
 
 .container {
 	width: 100%;
@@ -131,14 +181,14 @@ body {
 .hero__title {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 6.5vw, 4.5rem);
-  font-weight: 700;
+  font-weight: 600; /* slightly less heavy for elegance */
   line-height: 1.02;
   color: var(--text);
   margin: 0;
-  letter-spacing: 0.14em; /* tombstone letter spacing */
+  letter-spacing: 0.06em; /* tighter spacing for refined look */
   max-width: 92%;
-  text-shadow: 0 6px 30px rgba(0,0,0,0.7);
-  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  text-transform: none; /* natural casing for elegance */
   transform-origin: center;
   /* subtle intermittent flicker */
   animation: title-flicker 8s linear infinite;
@@ -148,10 +198,11 @@ body {
   font-size: clamp(1rem, 2.2vw, var(--text-lg));
   color: var(--text-muted);
   max-width: 48rem;
-  line-height: calc(var(--leading) + 0.1);
+  line-height: calc(var(--leading) + 0.08);
   margin-top: var(--space-sm);
   opacity: 0.96;
   letter-spacing: 0.01em;
+  font-weight: 300; /* lighter lead for elegance */
 }
 
 .hero::before {
@@ -185,8 +236,11 @@ body {
 /* reduce particles so they feel like dust rather than decoration */
 #particles { opacity: 0.04; }
 
-.parallax-bg__layer--mid { filter: grayscale(0.8) brightness(0.55) blur(16px); opacity: 0.5; }
-.parallax-bg__layer--far { filter: grayscale(0.8) brightness(0.45) blur(10px); }
+.parallax-bg__layer--mid { filter: grayscale(0.9) brightness(0.38) blur(12px); opacity: 0.7; animation: float-slow-mid 18s ease-in-out infinite; }
+.parallax-bg__layer--far { filter: grayscale(0.95) brightness(0.32) blur(8px); opacity: 0.7; animation: float-slow-far 24s ease-in-out infinite; }
+
+@keyframes float-slow-mid { 0% { transform: translateY(0) } 50% { transform: translateY(-12px) } 100% { transform: translateY(0) } }
+@keyframes float-slow-far { 0% { transform: translateY(0) } 50% { transform: translateY(-8px) } 100% { transform: translateY(0) } }
 
 /* animations */
 @keyframes title-flicker {
@@ -218,19 +272,19 @@ body {
 /* Sections */
 .chapter {
   padding-block: var(--space-lg);
-  background: linear-gradient(
-    180deg,
-    var(--bg-section) 0%,
-    var(--bg) 100%
-  );
-  border-top: 1px solid var(--border);
+  /* glassy, dim backdrop with subtle depth for a modern grim aesthetic */
+  background: linear-gradient(180deg, rgba(11,10,10,0.60), rgba(7,5,6,0.45));
+  border-top: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px) saturate(0.7);
+  -webkit-backdrop-filter: blur(6px) saturate(0.7);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 6px 30px rgba(0,0,0,0.6);
 }
 
 .chapter__headline {
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--accent);
+  font-weight: 500; /* reduce boldness for refinement */
+  color: var(--text-muted);
   margin-bottom: var(--space-md);
   letter-spacing: 0.02em;
 }
@@ -252,16 +306,17 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 0;
-	margin: 0;
+	margin: var(--space-sm) 0;
 }
 
 .chapter__question {
-	padding: 0.5rem 1rem;
-	border-left: 2px solid var(--accent);
-	background: var(--accent-soft);
+	/* normalize question card spacing to token-driven values */
+	padding: var(--card-padding-y) var(--card-padding-x);
+	border-left: 4px solid var(--accent);
 	color: var(--text);
-	font-style: italic;
-	margin-bottom: 0.25rem;
+	font-style: italic !important;
+	margin-bottom: var(--card-gap);
+	background: transparent; /* let sections.css define glassy surface */
 }
 
 /* Footer */

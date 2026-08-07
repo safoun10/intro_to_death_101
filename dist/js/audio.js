@@ -137,7 +137,7 @@ function stopAudioFile() {
   if (!audioEl) return;
   audioEl.pause();
   audioEl.currentTime = 0;
-  try { URL.revokeObjectURL(audioUrl); } catch (e) {}
+  try { URL.revokeObjectURL(audioUrl); } catch (e) { }
   audioEl = null;
   audioUrl = null;
   isPlaying = false;
@@ -188,7 +188,7 @@ export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
         audioEl = new Audio('/media/music.mp3');
         audioEl.loop = true;
         audioEl.preload = 'auto';
-        showHint('Bundled music found — click to play');
+        showHint('Please turn on the immersive audio - click to play');
         return;
       }
     } catch (e) {
@@ -199,7 +199,7 @@ export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
           audioEl = new Audio('/media/music.mp3');
           audioEl.loop = true;
           audioEl.preload = 'auto';
-          showHint('Bundled music found — click to play');
+          showHint('Please turn on the immersive audio - click to play');
           return;
         }
       } catch (err) {
@@ -217,7 +217,7 @@ export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
     // If an audio file element exists, toggle play/pause
     if (audioEl) {
       if (audioEl.paused) {
-        await audioEl.play().catch(() => {});
+        await audioEl.play().catch(() => { });
         setIcon(true);
         isPlaying = true;
       } else {
