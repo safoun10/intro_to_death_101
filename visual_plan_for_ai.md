@@ -2,34 +2,34 @@
 name: Death 101 Visual Blog
 overview: Build a clean, mobile-first scrollytelling site from death.md — clarity of intent first, cinematic theme second — with a flexible build parser that adapts when you add or remove text, vanilla HTML/CSS/JS, and lightweight Lenis + canvas effects.
 todos:
-  - id: cursor-rules
-    content: Add .cursor/rules/death-md-readonly.mdc + project conventions (never edit death.md)
-    status: completed
-  - id: scaffold
-    content: Scaffold package.json, src/, scripts/, npm run build/dev/preview
-    status: in_progress
-  - id: content-parser
-    content: Implement flexible build-content.mjs — resilient parsing, optional content.config.json for themes/headlines when structure changes
-    status: in_progress
-  - id: render-shell
-    content: Build index.html + render.js — clean semantic DOM, generous spacing, readable measure
-    status: pending
-  - id: visual-system
-    content: CSS tokens + typography-first layout; temporal themes subtle enough not to compete with prose
-    status: pending
-  - id: scroll-motion
-    content: Lenis smooth scroll, gentle reveals, restrained parallax, full reduced-motion fallback
-    status: pending
-  - id: canvas-effects
-    content: Light canvas/SVG accents tied to scroll — background only, never obscuring text
-    status: pending
-  - id: polish-ship
-    content: OG meta, README, dist build, mobile + desktop + reduced-motion test matrix
-    status: pending
+    - id: cursor-rules
+      content: Add .cursor/rules/death-md-readonly.mdc + project conventions (never edit death.md)
+      status: completed
+    - id: scaffold
+      content: Scaffold package.json, src/, scripts/, npm run build/dev/preview
+      status: in_progress
+    - id: content-parser
+      content: Implement flexible build-content.mjs — resilient parsing, optional content.config.json for themes/headlines when structure changes
+      status: in_progress
+    - id: render-shell
+      content: Build index.html + render.js — clean semantic DOM, generous spacing, readable measure
+      status: pending
+    - id: visual-system
+      content: CSS tokens + typography-first layout; temporal themes subtle enough not to compete with prose
+      status: pending
+    - id: scroll-motion
+      content: Lenis smooth scroll, gentle reveals, restrained parallax, full reduced-motion fallback
+      status: pending
+    - id: canvas-effects
+      content: Light canvas/SVG accents tied to scroll — background only, never obscuring text
+      status: pending
+    - id: polish-ship
+      content: OG meta, README, dist build, mobile + desktop + reduced-motion test matrix
+      status: pending
 isProject: false
 ---
 
-# Introduction to Death 101 — Visual Blog Plan (final)
+# INTRODUCTION TO DEATH 101 — Visual Blog Plan (final)
 
 ## What you have
 
@@ -49,6 +49,7 @@ This governs every decision. When in doubt, choose clarity.
 4. **Mobile first, desktop equal** — Phone is the primary canvas (where most readers arrive). Desktop gets the same story with more breathing room — not a different experience.
 
 **Clean means:**
+
 - Generous whitespace and line-height (1.6–1.75 body)
 - Narrow reading measure (~38–42rem max on desktop; full width with side padding on mobile)
 - One visual idea per section, not stacked effects
@@ -59,11 +60,11 @@ This governs every decision. When in doubt, choose clarity.
 
 ## Honest recommendation (not yes-man)
 
-| Approach | Verdict |
-|---|---|
-| Plain markdown → static text site | Too weak for your goal |
-| Full Awwwards WebGL (Three.js, heavy GSAP) | Wrong fit: text-first essay, mobile cost, conflicts with "vanilla" |
-| **Cinematic-light scrollytelling** (your choice) | Best balance: emotional impact without a framework or 3D pipeline |
+| Approach                                         | Verdict                                                            |
+| ------------------------------------------------ | ------------------------------------------------------------------ |
+| Plain markdown → static text site                | Too weak for your goal                                             |
+| Full Awwwards WebGL (Three.js, heavy GSAP)       | Wrong fit: text-first essay, mobile cost, conflicts with "vanilla" |
+| **Cinematic-light scrollytelling** (your choice) | Best balance: emotional impact without a framework or 3D pipeline  |
 
 **Skip React/Vue.** A single long-form scroll story does not need a SPA. **Skip Three.js.** Canvas particles + SVG metaphors carry the mood without WebGL complexity.
 
@@ -91,17 +92,20 @@ flowchart TB
 **Palette progression:** warm amber dawn → muted rust → cold blue-black → near-black with a single warm accent (last light). Transitions are gradual — no jarring section jumps.
 
 **Typography (clarity-first):**
+
 - Body: readable sans (**Source Sans 3** or **Instrument Sans**) — 17–18px base on mobile via `clamp()`
 - Display/section cues: serif accent (**Cormorant Garamond**) for short headlines only — not for long paragraphs
 - Questions: visually separated callout blocks with left border or subtle background — staggered reveal, never hidden behind scroll tricks
 
 **Motion language (restrained):**
+
 - Background **particle field** (canvas): very subtle; opacity capped low; sits behind text at all times
 - **Parallax:** max 15–20px offset on desktop; 8px on mobile — barely perceptible depth
 - **Section reveals:** fade + small translateY; one beat per paragraph block, not per word
 - **SVG horizon** (hero only): single static motif; optional subtle drain on scroll — skippable if it adds noise
 
 **Accessibility (non-negotiable):**
+
 - `prefers-reduced-motion: reduce` → disable Lenis, static layout, instant text visibility, no particle animation
 - Semantic HTML (`main`, `section`, `article`, `h2`, `blockquote`)
 - Contrast ratio WCAG AA minimum for all text
@@ -136,24 +140,39 @@ Also add a project-wide rule (`alwaysApply: true`): **new markdown lives in `con
 
 **Parser philosophy: resilient, not rigid.**
 
-| Behavior | Old plan | Updated plan |
-|---|---|---|
-| Missing section markers | Fail build | Graceful fallback: treat as sequential `section-01`, `section-02`, … |
-| Added paragraphs | — | Auto-detected; new blocks appear in order |
-| Removed sections | — | Site shrinks; theme cycle still works via index position |
-| Bullet clusters | Questions block | Same; any `- ...` line group → questions |
-| Unknown structure | Error | Warn in console; render everything readable |
+| Behavior                | Old plan        | Updated plan                                                         |
+| ----------------------- | --------------- | -------------------------------------------------------------------- |
+| Missing section markers | Fail build      | Graceful fallback: treat as sequential `section-01`, `section-02`, … |
+| Added paragraphs        | —               | Auto-detected; new blocks appear in order                            |
+| Removed sections        | —               | Site shrinks; theme cycle still works via index position             |
+| Bullet clusters         | Questions block | Same; any `- ...` line group → questions                             |
+| Unknown structure       | Error           | Warn in console; render everything readable                          |
 
 **Optional presentation config** — [`content.config.json`](content.config.json) (you edit; agent may help):
 
 ```json
 {
-  "title": "Introduction to Death 101",
-  "sectionOverrides": {
-    "next 10 year": { "id": "ten-years", "theme": "dawn", "headline": "Ten years — but when?" },
-    "next 1 year": { "id": "one-year", "theme": "dusk", "headline": "One year left" }
-  },
-  "defaultThemeCycle": ["dawn", "dusk", "midnight", "void", "flicker", "stillness"]
+	"title": "INTRODUCTION TO DEATH 101",
+	"sectionOverrides": {
+		"next 10 year": {
+			"id": "ten-years",
+			"theme": "dawn",
+			"headline": "Ten years — but when?"
+		},
+		"next 1 year": {
+			"id": "one-year",
+			"theme": "dusk",
+			"headline": "One year left"
+		}
+	},
+	"defaultThemeCycle": [
+		"dawn",
+		"dusk",
+		"midnight",
+		"void",
+		"flicker",
+		"stillness"
+	]
 }
 ```
 
@@ -165,22 +184,23 @@ Also add a project-wide rule (`alwaysApply: true`): **new markdown lives in `con
 
 ```json
 {
-  "title": "Introduction to Death 101",
-  "sections": [
-    {
-      "id": "ten-years",
-      "theme": "dawn",
-      "headline": "Ten years — but when?",
-      "blocks": [
-        { "type": "paragraph", "text": "..." },
-        { "type": "questions", "items": ["..."] }
-      ]
-    }
-  ]
+	"title": "INTRODUCTION TO DEATH 101",
+	"sections": [
+		{
+			"id": "ten-years",
+			"theme": "dawn",
+			"headline": "Ten years — but when?",
+			"blocks": [
+				{ "type": "paragraph", "text": "..." },
+				{ "type": "questions", "items": ["..."] }
+			]
+		}
+	]
 }
 ```
 
 **Your workflow:**
+
 1. Edit `death.md` (add/remove/rewrite as you like)
 2. Optionally tweak `content.config.json` for headlines/themes
 3. Run `npm run build` → site updates
@@ -188,29 +208,29 @@ Also add a project-wide rule (`alwaysApply: true`): **new markdown lives in `con
 
 **Current manuscript markers** (starting defaults in config, not hard requirements):
 
-| Marker in text | Suggested theme |
-|---|---|
-| "next 10 year" | dawn |
-| "next 1 year" | dusk |
-| "die today" / "this exact hour" | midnight |
-| "Being born means death" | void |
-| "age of 60 or 80" | flicker |
-| Final question cluster | stillness |
+| Marker in text                  | Suggested theme |
+| ------------------------------- | --------------- |
+| "next 10 year"                  | dawn            |
+| "next 1 year"                   | dusk            |
+| "die today" / "this exact hour" | midnight        |
+| "Being born means death"        | void            |
+| "age of 60 or 80"               | flicker         |
+| Final question cluster          | stillness       |
 
 ---
 
 ## Tech stack
 
-| Layer | Choice | Why |
-|---|---|---|
-| Markup | Semantic HTML5 | SEO, a11y, no build framework |
-| Style | Plain CSS + custom properties | Mobile-first, theming per section |
-| Script | ES modules, no bundler | Keeps it vanilla |
-| Smooth scroll | Lenis (CDN) | Premium feel; one justified dependency |
-| Animation | CSS + `IntersectionObserver` | Gentle reveals; no GSAP |
-| Effects | Canvas particles + inline SVG | Background-only accents |
-| Dev | `npm run dev` → static server | Simple local preview |
-| Deploy | Static `dist/` folder | GitHub Pages / Netlify / Cloudflare Pages |
+| Layer         | Choice                        | Why                                       |
+| ------------- | ----------------------------- | ----------------------------------------- |
+| Markup        | Semantic HTML5                | SEO, a11y, no build framework             |
+| Style         | Plain CSS + custom properties | Mobile-first, theming per section         |
+| Script        | ES modules, no bundler        | Keeps it vanilla                          |
+| Smooth scroll | Lenis (CDN)                   | Premium feel; one justified dependency    |
+| Animation     | CSS + `IntersectionObserver`  | Gentle reveals; no GSAP                   |
+| Effects       | Canvas particles + inline SVG | Background-only accents                   |
+| Dev           | `npm run dev` → static server | Simple local preview                      |
+| Deploy        | Static `dist/` folder         | GitHub Pages / Netlify / Cloudflare Pages |
 
 ---
 
@@ -257,6 +277,7 @@ Single scrolling page — no pagination, no tabs.
 3. **Footer** — minimal; scroll-to-top only
 
 **Mobile (base, 320px+):**
+
 - Single column; 1.25rem side padding
 - Body `clamp(1rem, 2.5vw, 1.125rem)`; line-height 1.7
 - Question callouts: full-width cards with 1rem padding
@@ -264,6 +285,7 @@ Single scrolling page — no pagination, no tabs.
 - Parallax: disabled or minimal on low-end / small screens via `matchMedia`
 
 **Desktop (`min-width: 768px`):**
+
 - Centered column, max-width ~42rem for prose
 - Questions can offset slightly right for visual rhythm — still same reading order
 - Particles: ~60 count; parallax up to 20px
@@ -276,24 +298,28 @@ Single scrolling page — no pagination, no tabs.
 ## Implementation phases
 
 ### Phase 1 — Foundation (clarity shell)
+
 - Project scaffold + Cursor rules
 - Flexible content parser + `content.config.json`
 - JSON-driven render with clean semantic HTML
 - Base typography and spacing **before** any effects
 
 ### Phase 2 — Visual system (theme, not noise)
+
 - CSS tokens: temporal color ramp, spacing scale
 - Section themes via `data-theme`; fallback cycle for new/removed sections
 - Question callout component
 - Mobile-first layout; desktop enhancements at 768px / 1024px
 
 ### Phase 3 — Motion layer (restrained)
+
 - Lenis + reduced-motion bypass
 - Gentle IntersectionObserver reveals (paragraph-level, not word-level)
 - Light parallax on background layers only
 - Canvas particles: low opacity, paused when tab hidden
 
 ### Phase 4 — Polish + ship
+
 - Hero SVG horizon (if it passes the "does this help intent?" test)
 - OG meta for sharing
 - README: edit death.md → build → deploy

@@ -1,4 +1,4 @@
-body {
+html, body {
 	font-family: var(--font-body);
 	font-size: var(--text-base);
 	line-height: var(--leading);
@@ -9,6 +9,14 @@ body {
 		color var(--transition-speed) ease;
 	overflow-x: hidden;
 }
+
+/* Enforce display font for headings */
+h1, h2, h3, h4, h5, h6, .hero__title, .chapter__headline, .chapter__question {
+	font-family: var(--font-display) !important;
+}
+
+button, input, textarea, select, a { font-family: inherit; }
+
 
 .container {
 	width: 100%;

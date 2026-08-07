@@ -1,5 +1,5 @@
 {
-  "title": "Introduction to Death 101",
+  "title": "INTRODUCTION TO DEATH 101",
   "description": "A meditation on mortality, uncertainty, and the time you think you have left.",
   "sectionOverrides": {
     "next 10 year": {
@@ -38,5 +38,12 @@
       "headline": "Stillness"
     }
   },
-  "defaultThemeCycle": ["dawn", "dusk", "midnight", "void", "flicker", "stillness"]
+  "defaultThemeCycle": [
+    "dawn",
+    "dusk",
+    "midnight",
+    "void",
+    "flicker",
+    "stillness"
+  ]
 }
