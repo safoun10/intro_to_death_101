@@ -14,4 +14,3 @@ if (existsSync(dist)) {
 mkdirSync(dist, { recursive: true });
 cpSync(src, dist, { recursive: true });
 
-console.log("Copied src/ → dist/");

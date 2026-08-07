@@ -1,0 +1,54 @@
+:root {
+	--text-base: 1.125rem;
+	--text-lg: 1.5rem;
+	--text-xl: 3.5rem;
+	--leading: 1.7;
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 3rem;
+	--space-xl: 5rem;
+	--space-2xl: 12rem;
+	--measure: 36rem;
+	--gutter: 1.5rem;
+
+	--font-body: "Inter", sans-serif;
+	--font-display: "Crimson Text", serif;
+
+	--bg: #050505;
+	--text: #a0a0a0;
+	--accent: #ffffff;
+	--transition-speed: 2.5s;
+}
+
+/* Temporal Descent Themes */
+[data-theme="dawn"] {
+	--bg: #1a1a1a;
+	--text: #888;
+	--accent: #c0c0c0;
+}
+[data-theme="dusk"] {
+	--bg: #121212;
+	--text: #777;
+	--accent: #a0a0a0;
+}
+[data-theme="midnight"] {
+	--bg: #0a0a0a;
+	--text: #555;
+	--accent: #808080;
+}
+[data-theme="void"] {
+	--bg: #050505;
+	--text: #333;
+	--accent: #555;
+}
+[data-theme="flicker"] {
+	--bg: #020202;
+	--text: #222;
+	--accent: #333;
+}
+[data-theme="stillness"] {
+	--bg: #000000;
+	--text: #111;
+	--accent: #ffffff;
+}

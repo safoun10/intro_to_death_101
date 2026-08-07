@@ -153,7 +153,6 @@ function build() {
   if (sections.length === 0) {
     console.warn("Warning: no sections parsed from death.md");
   } else {
-    console.log(`Parsed ${sections.length} section(s) from death.md`);
   }
 
   const content = {
@@ -170,7 +169,6 @@ function build() {
     "utf-8"
   );
 
-  console.log("Wrote src/data/content.json");
 }
 
 build();
