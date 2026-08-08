@@ -210,9 +210,46 @@ export function initAudioToggle(buttonId = 'audio-toggle-fixed') {
     showHint('Click to play the ambient music');
   })();
 
+  // Try autoplay after a short delay. Many browsers block autoplay without a user gesture —
+  // this attempts to start playback and, if blocked, draws attention to the play button.
+  const AUTOPLAY_DELAY_MS = 3000;
+  setTimeout(async () => {
+    try {
+      if (audioEl) {
+        // If an audio file was discovered, try to play it
+        await audioEl.play();
+        setIcon(true);
+        isPlaying = true;
+        hideHint();
+        // keep the button glowing per user request (do not remove pulse)
+        return;
+      }
+      // Otherwise try the procedural drone. This may throw or be suspended by policy.
+      try {
+        createDrone();
+        // If createDrone succeeded, update UI
+        setIcon(true);
+        isPlaying = true;
+        hideHint();
+        // keep glowing even when playing (user asked to keep glow)
+      } catch (err) {
+        // autoplay blocked — add visual cue and keep hint visible
+        console.warn('Autoplay blocked or failed:', err);
+        btn.classList.add('pulse');
+        showHint('Autoplay blocked — tap the glowing button to enable audio');
+      }
+    } catch (playErr) {
+      // play() was rejected — common when no user gesture. Draw attention to control
+      console.warn('Autoplay attempt rejected:', playErr);
+      btn.classList.add('pulse');
+      showHint('Autoplay blocked — tap the glowing button to enable audio');
+    }
+  }, AUTOPLAY_DELAY_MS);
+
   btn.addEventListener('click', async (e) => {
     // first hide hint when user interacts
     hideHint();
+    // per request: do NOT remove pulse on click — keep attention effect active
 
     // If an audio file element exists, toggle play/pause
     if (audioEl) {

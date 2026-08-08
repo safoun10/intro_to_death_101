@@ -15,6 +15,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:ital,wght@0,300;0,400;1,300&display=swap" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"></noscript>
+  <!-- Title-only font: Bodoni Moda (loaded for hero title) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Explicit stylesheet load to ensure Bodoni Moda is available for the hero title -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('fonts-loading');if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){document.documentElement.classList.add('fonts-loaded');document.documentElement.classList.remove('fonts-loading');});}else{window.addEventListener('load',function(){document.documentElement.classList.add('fonts-loaded');document.documentElement.classList.remove('fonts-loading');});}</script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tokens.css">
@@ -55,6 +60,12 @@
       <button type="button" class="scroll-top" id="scroll-top" aria-label="Scroll to top">
         ↑ Back to start
       </button>
+    </div>
+
+    <hr class="site-footer__rule" />
+
+    <div class="container site-footer__inner site-footer__copyright">
+      <small style="color:var(--text-muted);">© Copyright 2026 | All rights reserved to <a href="https://www.instagram.com/safoun_" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:underline;">safoun_</a></small>
     </div>
 
     <!-- Fixed audio control (icon-only). Procedural drone will play when toggled; user can later add a file upload feature if desired. -->
